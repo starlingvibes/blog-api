@@ -100,12 +100,40 @@ class BlogServices {
   updateBlog = async (req) => {
     try {
       const token = await helper.extractToken(req);
-      await jwt.authAdmin(token);
+      const user = await jwt.authUser(token);
 
       const blogId = req.params.blogId;
       const newData = req.body;
 
-      return await query.updateBlog(blogId, newData);
+      const blog = await query.fetchBlog(blogId);
+      if (!blog) {
+        throw new Error('Invalid blogId');
+      }
+      if (blog.userId !== user.userId && !user.isAdmin) {
+        throw new Error('Access denied');
+      }
+
+      const originalBlogContent = await query.fetchBlogContent(
+        blog.blogContentId
+      );
+      if (!originalBlogContent) {
+        throw new Error('Blog content not found');
+      }
+
+      const userIsAnEmployee = await query.isUserAnEmployee(user.userId);
+      if (!userIsAnEmployee && !user.isAdmin) {
+        await query.updatePendingBlog(
+          user.userId,
+          blogId,
+          blog,
+          originalBlogContent,
+          newData
+        );
+        return 'Blog update pending admin approval';
+      }
+
+      await query.updateBlog(blogId, newData);
+      return 'Blog updated successfully';
     } catch (error) {
       throw error;
     }

@@ -52,10 +52,10 @@ blogRouter.get('/:blogIdOrSlug', inputs.fetchBlog(), async (req, res) => {
   }
 });
 
-blogRouter.put('/:blogId', inputs.createBlog(), async (req, res) => {
+blogRouter.put('/:blogId', inputs.updateBlog(), async (req, res) => {
   try {
     const result = await blogs.updateBlog(req);
-    response.success(res, 'Blog updated successfully', result);
+    response.success(res, result, null);
   } catch (error) {
     response.error(res, error.message);
   }

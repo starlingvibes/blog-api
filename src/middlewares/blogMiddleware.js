@@ -46,6 +46,17 @@ class blogMiddleware {
       }),
     });
 
+  updateBlog = () =>
+    celebrate({
+      [Segments.BODY]: Joi.object().keys({
+        title: Joi.string().trim().label('title'),
+        description: Joi.string().trim().label('description'),
+        coverImage: Joi.string().trim().label('coverImage'),
+        html: Joi.string().trim().label('html'),
+        markdown: Joi.string().trim().label('markdown'),
+      }),
+    });
+
   evaluateBlogRevision = () =>
     celebrate({
       [Segments.BODY]: Joi.object().keys({

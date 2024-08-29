@@ -183,6 +183,17 @@ class QueryServices {
     }
   };
 
+  fetchBlogContent = async (blogContentId) => {
+    try {
+      const blogContent = await BlogContent.findOne({
+        where: { blogContentId },
+      });
+      return blogContent;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   rejectBlogRevision = async (blogRevision) => {
     try {
       return await blogRevision.update({
@@ -204,7 +215,6 @@ class QueryServices {
         ...data,
         userId,
         blogContentId: blogContent.blogContentId,
-        isApproved: true,
         isPublished: true,
       });
     } catch (error) {
@@ -228,7 +238,29 @@ class QueryServices {
         description,
         slug,
         coverImage,
-        isApproved: true,
+        isPublished: true,
+      });
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  updateBlogAndApproveRevision = async (blogRevision) => {
+    try {
+      const { userId, blogContentId, title, description, coverImage, slug } =
+        blogRevision;
+
+      await blogRevision.update({
+        status: 'approved',
+        revisionDate: new Date(),
+      });
+      return await Blog.create({
+        userId,
+        blogContentId,
+        title,
+        description,
+        slug,
+        coverImage,
         isPublished: true,
       });
     } catch (error) {
@@ -279,8 +311,62 @@ class QueryServices {
       if (!blog) {
         throw new Error('Blog not found');
       }
-      await blog.update({ ...newData });
+
+      const blogContent = await BlogContent.findOne({
+        where: { blogContentId: blog.blogContentId },
+      });
+      if (!blogContent) {
+        throw new Error('Blog content not found');
+      }
+      const oldBlogContentHtml = blogContent.html;
+      const oldBlogContentMarkdown = blogContent.markdown;
+
+      await blog.update({
+        ...newData,
+        title: newData.title ? newData.title : blog.title,
+        description: newData.description
+          ? newData.description
+          : blog.description,
+        coverImage: newData.coverImage ? newData.coverImage : blog.coverImage,
+        slug: newData.slug ? newData.slug : blog.slug,
+      });
+      await blogContent.update({
+        html: newData.html ? newData.html : oldBlogContentHtml,
+        markdown: newData.markdown ? newData.markdown : oldBlogContentMarkdown,
+      });
       return blog;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  updatePendingBlog = async (
+    userId,
+    blogId,
+    blog,
+    originalBlogContent,
+    newData
+  ) => {
+    try {
+      const blogContent = await BlogContent.create({
+        html: newData.html ? newData.html : originalBlogContent.html,
+        markdown: newData.markdown
+          ? newData.markdown
+          : originalBlogContent.markdown,
+      });
+      return await BlogRevision.create({
+        ...newData,
+        userId,
+        blogId,
+        blogContentId: blogContent.blogContentId,
+        title: newData.title ? newData.title : blog.title,
+        description: newData.description
+          ? newData.description
+          : blog.description,
+        coverImage: newData.coverImage ? newData.coverImage : blog.coverImage,
+        slug: newData.slug ? newData.slug : blog.slug,
+        revisionType: 'UPDATE',
+      });
     } catch (error) {
       throw error;
     }

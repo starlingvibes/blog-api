@@ -58,10 +58,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      isApproved: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false,
-      },
       isPublished: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
