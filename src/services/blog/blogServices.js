@@ -11,6 +11,17 @@ class BlogServices {
     }
   };
 
+  fetchAllBlogRevisions = async (req) => {
+    try {
+      const token = await helper.extractToken(req);
+      await jwt.authAdmin(token);
+
+      return await query.fetchBlogRevisions(req.query);
+    } catch (error) {
+      throw error;
+    }
+  };
+
   fetchSingleBlogByIDOrSlug = async (req) => {
     try {
       const blogIdOrSlug = req.params.blogIdOrSlug;

@@ -11,6 +11,16 @@ class blogMiddleware {
       }),
     });
 
+  fetchBlogRevisions = () =>
+    celebrate({
+      [Segments.QUERY]: Joi.object().keys({
+        q: Joi.string(),
+        page: Joi.number().default(1),
+        limit: Joi.number().default(10),
+        status: Joi.string().valid('pending', 'approved', 'rejected'),
+      }),
+    });
+
   fetchBlog = () =>
     celebrate({
       [Segments.BODY]: Joi.object().keys({

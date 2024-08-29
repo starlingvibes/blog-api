@@ -17,6 +17,10 @@ module.exports = {
         primaryKey: true,
         unique: true,
       },
+      userId: {
+        type: Sequelize.UUID,
+        allowNull: false,
+      },
       blogId: {
         type: Sequelize.UUID,
         allowNull: false,
@@ -39,6 +43,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      status: {
+        type: Sequelize.ENUM,
+        values: ['pending', 'approved', 'rejected'],
+        defaultValue: 'pending',
+      },
       revisionType: {
         type: Sequelize.ENUM,
         values: ['CREATE', 'UPDATE', 'DELETE'],
@@ -46,7 +55,6 @@ module.exports = {
       },
       revisionDate: {
         type: Sequelize.DATE,
-        allowNull: false,
       },
       createdAt: {
         allowNull: false,

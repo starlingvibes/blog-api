@@ -88,6 +88,47 @@ class QueryServices {
     }
   };
 
+  fetchBlogRevisions = async (query) => {
+    try {
+      let { page = 1, limit = 10, status, q } = query;
+
+      page = parseInt(page, 10);
+      limit = parseInt(limit, 10);
+
+      let where = {};
+
+      if (status) where = { ...where, status };
+
+      if (q)
+        where = {
+          ...where,
+          [Op.or]: [{ name: { [Op.like]: `%${q}%` } }],
+        };
+
+      const { count, rows } = await BlogRevision.findAndCountAll({
+        where,
+        offset: (page - 1) * limit,
+        limit,
+        include: [
+          {
+            model: BlogContent,
+            as: 'blogContent',
+            attributes: ['html', 'markdown'],
+          },
+        ],
+      });
+
+      return {
+        total: count,
+        page,
+        lastPage: Math.ceil(count / limit),
+        items: rows,
+      };
+    } catch (error) {
+      throw error;
+    }
+  };
+
   fetchBlogByIDOrSlug = async (query) => {
     try {
       const blog = await Blog.findOne({
