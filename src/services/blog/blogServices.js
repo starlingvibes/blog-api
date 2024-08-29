@@ -114,15 +114,26 @@ class BlogServices {
   deleteBlog = async (req) => {
     try {
       const token = await helper.extractToken(req);
-      await jwt.authAdmin(token);
+      const user = await jwt.authUser(token);
 
-      const blog = await query.fetchBlog(req.params.blogId);
+      const { blogId } = req.params;
 
+      const blog = await query.fetchBlog(blogId);
       if (!blog) {
         throw new Error('Invalid blogId');
       }
+      if (blog.userId !== user.userId && !user.isAdmin) {
+        throw new Error('Access denied');
+      }
 
-      return await query.deleteBlog(req.params.blogId);
+      const userIsAnEmployee = await query.isUserAnEmployee(user.userId);
+      if (!userIsAnEmployee && !user.isAdmin) {
+        await query.deletePendingBlog(user.userId, blogId, blog);
+        return 'Blog deletion pending admin approval';
+      }
+
+      await query.deleteBlog(blogId);
+      return 'Blog deleted successfully';
     } catch (error) {
       throw error;
     }

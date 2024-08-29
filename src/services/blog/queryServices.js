@@ -147,6 +147,24 @@ class QueryServices {
     }
   };
 
+  fetchBlog = async (blogId) => {
+    try {
+      const blog = await Blog.findOne({
+        where: { blogId },
+        include: [
+          {
+            model: BlogContent,
+            as: 'blogContent',
+            attributes: ['html', 'markdown'],
+          },
+        ],
+      });
+      return blog;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   fetchBlogRevision = async (blogRevisionId) => {
     try {
       const blog = await BlogRevision.findOne({
@@ -218,6 +236,23 @@ class QueryServices {
     }
   };
 
+  deleteBlogAndApproveRevision = async (blogRevision) => {
+    try {
+      await blogRevision.update({
+        status: 'approved',
+        revisionDate: new Date(),
+      });
+      await Blog.destroy({
+        where: {
+          blogId: blogRevision.blogId,
+        },
+      });
+      return blogRevision;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   createPendingBlog = async (userId, blogId, data) => {
     try {
       const blogContent = await BlogContent.create({
@@ -254,6 +289,25 @@ class QueryServices {
   deleteBlog = async (blogId) => {
     try {
       return await Blog.destroy({ where: { blogId } });
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  deletePendingBlog = async (userId, blogId, data) => {
+    try {
+      const { title, description, coverImage, slug, blogContentId } = data;
+      return await BlogRevision.create({
+        userId,
+        blogId,
+        blogContentId,
+        title,
+        description,
+        slug,
+        coverImage,
+        revisionType: 'DELETE',
+      });
+      /// NOTE: creating this record for blog deletes not the best, but works for now
     } catch (error) {
       throw error;
     }

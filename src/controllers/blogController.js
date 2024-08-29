@@ -63,8 +63,8 @@ blogRouter.put('/:blogId', inputs.createBlog(), async (req, res) => {
 
 blogRouter.delete('/:blogId', inputs.deleteBlog(), async (req, res) => {
   try {
-    await blogs.deleteBlog(req);
-    response.success(res, 'Blog deleted successfully', null);
+    const data = await blogs.deleteBlog(req);
+    response.success(res, data, null);
   } catch (error) {
     response.error(res, error.message);
   }
