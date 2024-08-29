@@ -63,6 +63,40 @@ class BlogServices {
     }
   };
 
+  evaluateBlogRevision = async (req) => {
+    try {
+      const token = await helper.extractToken(req);
+      await jwt.authAdmin(token);
+
+      const { blogRevisionId, action } = req.body;
+
+      const blogRevision = await query.fetchBlogRevision(blogRevisionId);
+      if (!blogRevision || blogRevision.status !== 'pending') {
+        throw new Error('Blog revision not found');
+      }
+
+      switch (action) {
+        case 'approve':
+          switch (blogRevision.revisionType) {
+            case 'CREATE':
+              return await query.createBlogAndApproveRevision(blogRevision);
+            case 'UPDATE':
+              return await query.updateBlogAndApproveRevision(blogRevision);
+            case 'DELETE':
+              return await query.deleteBlogAndApproveRevision(blogRevision);
+            default:
+              throw new Error('Invalid revision type');
+          }
+        case 'reject':
+          return await query.rejectBlogRevision(blogRevision);
+        default:
+          throw new Error('Invalid action');
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
+
   updateBlog = async (req) => {
     try {
       const token = await helper.extractToken(req);

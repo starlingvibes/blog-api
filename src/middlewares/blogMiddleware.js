@@ -46,6 +46,18 @@ class blogMiddleware {
       }),
     });
 
+  evaluateBlogRevision = () =>
+    celebrate({
+      [Segments.BODY]: Joi.object().keys({
+        blogRevisionId: Joi.string().required().trim().label('blogRevisionId'),
+        action: Joi.string()
+          .valid('approve', 'reject')
+          .required()
+          .trim()
+          .label('action'),
+      }),
+    });
+
   deleteBlog = () =>
     celebrate({
       [Segments.PARAMS]: Joi.object().keys({

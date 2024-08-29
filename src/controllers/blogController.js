@@ -21,7 +21,7 @@ blogRouter.get('/', inputs.fetchBlogs(), async (req, res) => {
   }
 });
 
-blogRouter.get('/revisions', inputs.fetchBlogRevisions(), async (req, res) => {
+blogRouter.get('/revision', inputs.fetchBlogRevisions(), async (req, res) => {
   try {
     const result = await blogs.fetchAllBlogRevisions(req);
     response.success(res, 'Blogs revisions retrieved successfully', result);
@@ -29,6 +29,19 @@ blogRouter.get('/revisions', inputs.fetchBlogRevisions(), async (req, res) => {
     response.error(res, error.message);
   }
 });
+
+blogRouter.post(
+  '/revision/evaluate',
+  inputs.evaluateBlogRevision(),
+  async (req, res) => {
+    try {
+      const result = await blogs.evaluateBlogRevision(req);
+      response.success(res, 'Blog revision evaluated successfully', result);
+    } catch (error) {
+      response.error(res, error.message);
+    }
+  }
+);
 
 blogRouter.get('/:blogIdOrSlug', inputs.fetchBlog(), async (req, res) => {
   try {

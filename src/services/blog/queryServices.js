@@ -147,6 +147,35 @@ class QueryServices {
     }
   };
 
+  fetchBlogRevision = async (blogRevisionId) => {
+    try {
+      const blog = await BlogRevision.findOne({
+        where: { blogRevisionId },
+        include: [
+          {
+            model: BlogContent,
+            as: 'blogContent',
+            attributes: ['html', 'markdown'],
+          },
+        ],
+      });
+      return blog;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  rejectBlogRevision = async (blogRevision) => {
+    try {
+      return await blogRevision.update({
+        status: 'rejected',
+        revisionDate: new Date(),
+      });
+    } catch (error) {
+      throw error;
+    }
+  };
+
   createBlog = async (userId, data) => {
     try {
       const blogContent = await BlogContent.create({
@@ -157,6 +186,30 @@ class QueryServices {
         ...data,
         userId,
         blogContentId: blogContent.blogContentId,
+        isApproved: true,
+        isPublished: true,
+      });
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  createBlogAndApproveRevision = async (blogRevision) => {
+    try {
+      const { userId, blogContentId, title, description, coverImage, slug } =
+        blogRevision;
+
+      await blogRevision.update({
+        status: 'approved',
+        revisionDate: new Date(),
+      });
+      return await Blog.create({
+        userId,
+        blogContentId,
+        title,
+        description,
+        slug,
+        coverImage,
         isApproved: true,
         isPublished: true,
       });
