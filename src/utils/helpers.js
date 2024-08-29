@@ -1,6 +1,6 @@
 require('dotenv').config();
 const jsonwebtoken = require('jsonwebtoken');
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4, validate: uuidValidate } = require('uuid');
 const { query } = require('./utilsQueries');
 const sha512 = require('js-sha512').sha512;
 
@@ -18,6 +18,24 @@ class Helper {
       return null;
     }
     return req.headers['x-admin-token'];
+  };
+
+  // write a slugify function that also appends the last portion of a uuid to the slug
+  // if the slug is already taken
+  slugify = (text) => {
+    return text
+      .toString()
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w\-]+/g, '')
+      .replace(/\-\-+/g, '-')
+      .replace(/^-+/, '')
+      .replace(/-+$/, '')
+      .concat('-', uuidv4().split('-')[4]);
+  };
+
+  validateUuid = (string) => {
+    return uuidValidate(string);
   };
 
   generateId = async (data) => {

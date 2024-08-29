@@ -7,6 +7,7 @@ class blogMiddleware {
         q: Joi.string(),
         page: Joi.number().default(1),
         limit: Joi.number().default(10),
+        title: Joi.string(),
       }),
     });
 
@@ -29,6 +30,7 @@ class blogMiddleware {
       [Segments.BODY]: Joi.object().keys({
         title: Joi.string().required().trim().label('title'),
         description: Joi.string().required().trim().label('description'),
+        coverImage: Joi.string().required().trim().label('coverImage'),
         html: Joi.string().required().trim().label('html'),
         markdown: Joi.string().required().trim().label('markdown'),
       }),

@@ -21,9 +21,9 @@ blogRouter.get('/', inputs.fetchBlogs(), async (req, res) => {
   }
 });
 
-blogRouter.get('/:blogId', inputs.fetchBlog(), async (req, res) => {
+blogRouter.get('/:blogIdOrSlug', inputs.fetchBlog(), async (req, res) => {
   try {
-    const result = await blogs.fetchSingleBlog(req);
+    const result = await blogs.fetchSingleBlogByIDOrSlug(req);
     response.success(res, 'Blog retrieved successfully', result);
   } catch (error) {
     response.error(res, error.message);

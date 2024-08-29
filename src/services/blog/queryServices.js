@@ -1,4 +1,11 @@
-const { User, Security, Blog, BlogContent } = require('../../database/models');
+const {
+  User,
+  Security,
+  Blog,
+  BlogContent,
+  BlogRevision,
+  EmployeeOrganization,
+} = require('../../database/models');
 const { Op } = require('sequelize');
 
 class QueryServices {
@@ -28,6 +35,18 @@ class QueryServices {
     }
   };
 
+  isUserAnEmployee = async (userId) => {
+    try {
+      const record = await EmployeeOrganization.findOne({
+        where: { userId },
+      });
+
+      return !!record;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   fetchBlogs = async (query) => {
     try {
       let { page = 1, limit = 10, title, q } = query;
@@ -35,7 +54,7 @@ class QueryServices {
       page = parseInt(page, 10);
       limit = parseInt(limit, 10);
 
-      let where = {};
+      let where = { isPublished: true };
 
       if (title) where = { ...where, title: { [Op.like]: `%${title}%` } };
 
@@ -60,19 +79,19 @@ class QueryServices {
 
       return {
         total: count,
-        items: rows,
         page,
         lastPage: Math.ceil(count / limit),
+        items: rows,
       };
     } catch (error) {
       throw error;
     }
   };
 
-  fetchBlog = async (blogId) => {
+  fetchBlogByIDOrSlug = async (query) => {
     try {
       const blog = await Blog.findOne({
-        where: { blogId },
+        query,
         include: [
           {
             model: BlogContent,
@@ -87,9 +106,37 @@ class QueryServices {
     }
   };
 
-  createBlog = async (data) => {
+  createBlog = async (userId, data) => {
     try {
-      return await Blog.create({ ...data });
+      const blogContent = await BlogContent.create({
+        html: data.html,
+        markdown: data.markdown,
+      });
+      return await Blog.create({
+        ...data,
+        userId,
+        blogContentId: blogContent.blogContentId,
+        isApproved: true,
+        isPublished: true,
+      });
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  createPendingBlog = async (userId, blogId, data) => {
+    try {
+      const blogContent = await BlogContent.create({
+        html: data.html,
+        markdown: data.markdown,
+      });
+      return await BlogRevision.create({
+        ...data,
+        userId,
+        blogId,
+        blogContentId: blogContent.blogContentId,
+        revisionType: 'CREATE',
+      });
     } catch (error) {
       throw error;
     }

@@ -27,10 +27,19 @@ class organizationMiddleware {
   createOrganization = () =>
     celebrate({
       [Segments.BODY]: Joi.object().keys({
-        title: Joi.string().required().trim().label('title'),
-        description: Joi.string().required().trim().label('description'),
-        html: Joi.string().required().trim().label('html'),
-        markdown: Joi.string().required().trim().label('markdown'),
+        name: Joi.string().required().trim().label('name'),
+        tagline: Joi.string().required().trim().label('tagline'),
+        logo: Joi.string().required().trim().label('logo'),
+        websiteUrl: Joi.string().required().trim().label('websiteUrl'),
+      }),
+    });
+
+  addOrganizationEmployee = () =>
+    celebrate({
+      [Segments.BODY]: Joi.object().keys({
+        organizationId: Joi.string().required().trim().label('organizationId'),
+        userId: Joi.string().required().trim().label('userId'),
+        position: Joi.string().required().trim().label('position'),
       }),
     });
 

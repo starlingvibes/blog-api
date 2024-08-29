@@ -2,6 +2,7 @@ const {
   User,
   Security,
   Organization,
+  EmployeeOrganization,
   OrganizationContent,
 } = require('../../database/models');
 const { Op } = require('sequelize');
@@ -28,6 +29,28 @@ class QueryServices {
       return await Security.findOne({
         where: { userId },
       });
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  checkEmployee = async (data) => {
+    try {
+      const { userId, organizationId } = data;
+      const record = await EmployeeOrganization.findOne({
+        where: { userId, organizationId },
+      });
+
+      return !!record;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  addOrganizationEmployee = async (data) => {
+    try {
+      const { userId, organizationId, position } = data;
+      await EmployeeOrganization.create({ userId, organizationId, position });
     } catch (error) {
       throw error;
     }

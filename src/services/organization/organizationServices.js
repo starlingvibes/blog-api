@@ -30,9 +30,25 @@ class OrganizationServices {
   createOrganization = async (req) => {
     try {
       const token = await helper.extractToken(req);
-      const user = await jwt.authUser(token);
+      await jwt.authAdmin(token);
 
       return await query.createOrganization(req.body);
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  addOrganizationEmployee = async (req) => {
+    try {
+      const token = await helper.extractToken(req);
+      await jwt.authAdmin(token);
+
+      const userAlreadyEmployed = await query.checkEmployee(req.body);
+      if (userAlreadyEmployed) {
+        throw new Error('User already employed');
+      }
+
+      return await query.addOrganizationEmployee(req.body);
     } catch (error) {
       throw error;
     }

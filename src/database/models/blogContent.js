@@ -32,11 +32,11 @@ module.exports = (sequelize, DataTypes) => {
         unique: true,
       },
       html: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
       markdown: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
     },

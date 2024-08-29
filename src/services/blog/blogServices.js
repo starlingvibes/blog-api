@@ -5,19 +5,24 @@ const { helper } = require('../../utils/helpers');
 class BlogServices {
   fetchAllBlogs = async (req) => {
     try {
-      const token = await helper.extractToken(req);
-      await jwt.authUserOrAdmin(token);
       return await query.fetchBlogs(req.query);
     } catch (error) {
       throw error;
     }
   };
 
-  fetchSingleBlog = async (req) => {
+  fetchSingleBlogByIDOrSlug = async (req) => {
     try {
-      const token = await helper.extractToken(req);
-      await jwt.authAdmin(token);
-      const data = await query.fetchBlog(req.params.blogId);
+      const blogIdOrSlug = req.params.blogIdOrSlug;
+      let queryParam;
+
+      if (helper.validateUuid(blogIdOrSlug)) {
+        queryParam = { where: { blogId: blogIdOrSlug } };
+      } else {
+        queryParam = { where: { slug: blogIdOrSlug } };
+      }
+
+      const data = await query.fetchBlogByIDOrSlug(queryParam);
       if (!data) {
         return [];
       }
@@ -32,7 +37,16 @@ class BlogServices {
       const token = await helper.extractToken(req);
       const user = await jwt.authUser(token);
 
-      return await query.createBlog(req.body);
+      const slug = helper.slugify(req.body.title);
+      req.body.slug = slug;
+
+      const userIsAnEmployee = await query.isUserAnEmployee(user.userId);
+      if (!userIsAnEmployee && !user.isAdmin) {
+        const blogId = await helper.generateUuid();
+        return await query.createPendingBlog(user.userId, blogId, req.body);
+      }
+
+      return await query.createBlog(user.userId, req.body);
     } catch (error) {
       throw error;
     }
