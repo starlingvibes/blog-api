@@ -323,7 +323,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"status\": true,\n    \"message\": \"Profile fetched successfully\",\n    \"data\": {\n        \"userId\": \"1baf9252-6e22-4d17-b4eb-e832acad0de9\",\n        \"firstName\": \"Chidera\",\n        \"lastName\": \"Anichebe\",\n        \"email\": \"dera@ieee.org\",\n        \"profileImage\": \"https://res.cloudinary.com/taliot/image/upload/v1697199168/assets/landing_page/rbcmrygjs9edq5qbnh9p.png\",\n        \"isAdmin\": false,\n        \"isAccountActive\": true,\n        \"createdAt\": \"2024-08-29T12:03:49.821Z\",\n        \"deletedAt\": null\n    }\n}"
+							"body": "{\n    \"status\": true,\n    \"message\": \"Profile fetched successfully\",\n    \"data\": {\n        \"userId\": \"4265ad3e-64be-4ab2-b35b-fc6995c9de84\",\n        \"firstName\": \"Chidera\",\n        \"lastName\": \"Anichebe\",\n        \"email\": \"starlingmediang@gmail.com\",\n        \"profileImage\": \"https://res.cloudinary.com/taliot/image/upload/v1697199168/assets/landing_page/rbcmrygjs9edq5qbnh9p.png\",\n        \"isAdmin\": false,\n        \"isAccountActive\": true,\n        \"createdAt\": \"2024-08-30T07:57:03.514Z\",\n        \"deletedAt\": null,\n        \"employer\": [\n            {\n                \"organizationId\": \"95aa9d0a-41be-4f1a-aa89-f8012d5e12dd\",\n                \"position\": \"Software Engineer\"\n            }\n        ]\n    }\n}"
 						}
 					]
 				}
@@ -349,7 +349,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Big O Notation and Asymptotic Analysis (Presentation)\",\r\n    \"description\": \"Understanding Big O Notation, Theta notation and Omega notation. Knowing how to analyze common algorithms and common mistakes to avoid\",\r\n    \"html\": \"<p>Good day everyone, it's been a long minute since I wrote an article on here due to some circumstances that I hope would get sorted soon enough, a tiny little bit of procrastination 😉</p>\\n<p>But then, I hosted a session for the IEEEXtreme Nigeria Data Structures and Algorithms group and would love to share my slides. Do check it out <a target=\\\"_blank\\\" href=\\\"https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001\\\">here</a>!</p>\\n<p>Until next time... 🥂</p>\\n\",\r\n    \"markdown\": \"Good day everyone, it's been a long minute since I wrote an article on here due to some circumstances that I hope would get sorted soon enough, a tiny little bit of procrastination 😉\\n\\nBut then, I hosted a session for the IEEEXtreme Nigeria Data Structures and Algorithms group and would love to share my slides. Do check it out [here](https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001)!\\n\\nUntil next time... 🥂\",\r\n    \"coverImage\": \"https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg\"\r\n}",
+							"raw": "{\r\n    \"title\": \"Fix \\\"X-Forwarded-For\\\" header validation error on implementing API rate limiting\",\r\n    \"description\": \"This error is logged when the X-Forwarded-For header is set (indicating use of a proxy), but the trust proxy setting is false\",\r\n    \"html\": \"<p>You've just configured rate limiting on your API endpoints but performing a little test shows that you're getting rate limited when you're sure you shouldn't be. I was right in your shoes and the solution was a pretty interesting one. The logs are shown below:</p>\\n<pre><code class=\\\"lang-javascript\\\">ValidationError: The <span class=\\\"hljs-string\\\">'X-Forwarded-For'</span> header is set but the Express <span class=\\\"hljs-string\\\">'trust proxy'</span> setting is <span class=\\\"hljs-literal\\\">false</span> (<span class=\\\"hljs-keyword\\\">default</span>). This could indicate a misconfiguration which would prevent express-rate-limit <span class=\\\"hljs-keyword\\\">from</span> accurately identifying users. See https:<span class=\\\"hljs-comment\\\">//express-rate-limit.github.io/ERR_ERL_UNEXPECTED_X_FORWARDED_FOR/ for more information.</span>\\n    at <span class=\\\"hljs-built_in\\\">Object</span>.xForwardedForHeader (<span class=\\\"hljs-regexp\\\">/opt/</span>render/project/src/node_modules/express-rate-limit/dist/index.cjs:<span class=\\\"hljs-number\\\">166</span>:<span class=\\\"hljs-number\\\">13</span>)\\n    at <span class=\\\"hljs-built_in\\\">Object</span>.wrappedValidations.&lt;computed&gt; [<span class=\\\"hljs-keyword\\\">as</span> xForwardedForHeader] (<span class=\\\"hljs-regexp\\\">/opt/</span>render/project/src/node_modules/express-rate-limit/dist/index.cjs:<span class=\\\"hljs-number\\\">324</span>:<span class=\\\"hljs-number\\\">22</span>)\\n    at <span class=\\\"hljs-built_in\\\">Object</span>.keyGenerator (<span class=\\\"hljs-regexp\\\">/opt/</span>render/project/src/node_modules/express-rate-limit/dist/index.cjs:<span class=\\\"hljs-number\\\">579</span>:<span class=\\\"hljs-number\\\">20</span>)\\n    at /opt/render/project/src/node_modules/express-rate-limit/dist/index.cjs:<span class=\\\"hljs-number\\\">629</span>:<span class=\\\"hljs-number\\\">32</span>\\n    at runMicrotasks (<span class=\\\"xml\\\"><span class=\\\"hljs-tag\\\">&lt;<span class=\\\"hljs-name\\\">anonymous</span>&gt;</span>)\\n    at processTicksAndRejections (internal/process/task_queues.js:95:5)\\n    at async /opt/render/project/src/node_modules/express-rate-limit/dist/index.cjs:611:5 {\\n  code: 'ERR_ERL_UNEXPECTED_X_FORWARDED_FOR',\\n  help: 'https://express-rate-limit.github.io/ERR_ERL_UNEXPECTED_X_FORWARDED_FOR/'\\n}</span>\\n</code></pre>\\n<p>If you are behind a proxy/load balancer, which is usually the case with most hosting services like Render, Heroku, Cloudflare et al., the IP address of the request might be the IP of the load balancer/reverse proxy (making the rate limiter effectively a global one and blocking all requests once the limit is reached) or <code>undefined</code>.</p>\\n<p>The error above is logged when the <code>X-Forwarded-For</code> header (which indicates the use of a proxy) is set, but the trust proxy setting still has its default value of <code>false</code></p>\\n<p>To solve this issue, add the following line to your code (right after you create the express application)</p>\\n<pre><code class=\\\"lang-javascript\\\">app.set(<span class=\\\"hljs-string\\\">'trust proxy'</span>, <span class=\\\"hljs-number\\\">1</span>)\\napp.get(<span class=\\\"hljs-string\\\">'/ip'</span>, <span class=\\\"hljs-function\\\">(<span class=\\\"hljs-params\\\">request, response</span>) =&gt;</span> response.send(request.ip))\\napp.get(<span class=\\\"hljs-string\\\">'/x-forwarded-for'</span>, <span class=\\\"hljs-function\\\">(<span class=\\\"hljs-params\\\">request, response</span>) =&gt;</span> response.send(request.headers[<span class=\\\"hljs-string\\\">'x-forwarded-for'</span>]))\\n</code></pre>\\n<p>The value of <code>trust proxy</code> is the number of proxies between the user and the server. To find the correct number, you'd need to redeploy the application, and send a request while incrementing from 1..2..3...n until the request's IP matches your IP address (you can check <a target=\\\"_blank\\\" href=\\\"https://ip.nfriedly.com/\\\">https://ip.nfriedly.com/</a>)</p>\\n<p>If you test this locally, you will only get back an IP of \\\"::1\\\" and an empty <code>X-Forwarded-For</code> response because you're running locally, of course.</p>\\n<p><strong>Quick hint:</strong> The number of IP addresses in <code>GET /x-forwarded-for</code> response would give a good estimation of the number of proxies. Just so you don't search too long :-)</p>\\n\",\r\n    \"markdown\": \"You've just configured rate limiting on your API endpoints but performing a little test shows that you're getting rate limited when you're sure you shouldn't be. I was right in your shoes and the solution was a pretty interesting one. The logs are shown below:\\n\\n```javascript\\nValidationError: The 'X-Forwarded-For' header is set but the Express 'trust proxy' setting is false (default). This could indicate a misconfiguration which would prevent express-rate-limit from accurately identifying users. See https://express-rate-limit.github.io/ERR_ERL_UNEXPECTED_X_FORWARDED_FOR/ for more information.\\n    at Object.xForwardedForHeader (/opt/render/project/src/node_modules/express-rate-limit/dist/index.cjs:166:13)\\n    at Object.wrappedValidations.<computed> [as xForwardedForHeader] (/opt/render/project/src/node_modules/express-rate-limit/dist/index.cjs:324:22)\\n    at Object.keyGenerator (/opt/render/project/src/node_modules/express-rate-limit/dist/index.cjs:579:20)\\n    at /opt/render/project/src/node_modules/express-rate-limit/dist/index.cjs:629:32\\n    at runMicrotasks (<anonymous>)\\n    at processTicksAndRejections (internal/process/task_queues.js:95:5)\\n    at async /opt/render/project/src/node_modules/express-rate-limit/dist/index.cjs:611:5 {\\n  code: 'ERR_ERL_UNEXPECTED_X_FORWARDED_FOR',\\n  help: 'https://express-rate-limit.github.io/ERR_ERL_UNEXPECTED_X_FORWARDED_FOR/'\\n}\\n```\\n\\nIf you are behind a proxy/load balancer, which is usually the case with most hosting services like Render, Heroku, Cloudflare et al., the IP address of the request might be the IP of the load balancer/reverse proxy (making the rate limiter effectively a global one and blocking all requests once the limit is reached) or `undefined`.\\n\\nThe error above is logged when the `X-Forwarded-For` header (which indicates the use of a proxy) is set, but the trust proxy setting still has its default value of `false`\\n\\nTo solve this issue, add the following line to your code (right after you create the express application)\\n\\n```javascript\\napp.set('trust proxy', 1)\\napp.get('/ip', (request, response) => response.send(request.ip))\\napp.get('/x-forwarded-for', (request, response) => response.send(request.headers['x-forwarded-for']))\\n```\\n\\nThe value of `trust proxy` is the number of proxies between the user and the server. To find the correct number, you'd need to redeploy the application, and send a request while incrementing from 1..2..3...n until the request's IP matches your IP address (you can check [https://ip.nfriedly.com/](https://ip.nfriedly.com/))\\n\\nIf you test this locally, you will only get back an IP of \\\"::1\\\" and an empty `X-Forwarded-For` response because you're running locally, of course.\\n\\n**Quick hint:** The number of IP addresses in `GET /x-forwarded-for` response would give a good estimation of the number of proxies. Just so you don't search too long :-)\",\r\n    \"coverImage\": \"https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/xit3LjRvKvM/upload/728eade2e69cdf7f4a587b371bd7112b.jpeg\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -529,14 +529,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/v1/blog/b83dbf74-8c97-4af4-84d6-a6daf82d9b8e",
+							"raw": "{{url}}/v1/blog/57957842-8fd6-4487-8409-5187a9cdb5fd",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"v1",
 								"blog",
-								"b83dbf74-8c97-4af4-84d6-a6daf82d9b8e"
+								"57957842-8fd6-4487-8409-5187a9cdb5fd"
 							]
 						}
 					},
@@ -860,7 +860,6 @@
 								{
 									"key": "Content-Type",
 									"value": "application/json",
-									"name": "Content-Type",
 									"description": "",
 									"type": "text"
 								}
@@ -1114,6 +1113,68 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": true,\n    \"message\": \"Blog updated successfully\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch personal blogs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{userToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/blog/personal",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"personal"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/blog/personal",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"blog",
+										"personal"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Personal blogs retrieved successfully\",\n    \"data\": {\n        \"total\": 1,\n        \"page\": 1,\n        \"previousPage\": null,\n        \"nextPage\": null,\n        \"lastPage\": 1,\n        \"items\": [\n            {\n                \"blogId\": \"ad79e787-880b-45f6-b05b-b87aaab611ef\",\n                \"userId\": \"4265ad3e-64be-4ab2-b35b-fc6995c9de84\",\n                \"blogContentId\": \"a7e1d91a-a8ec-4867-a4a8-aca1fe8c1789\",\n                \"title\": \"Fix \\\"X-Forwarded-For\\\" header validation error on implementing API rate limiting\",\n                \"description\": \"This error is logged when the X-Forwarded-For header is set (indicating use of a proxy), but the trust proxy setting is false\",\n                \"coverImage\": \"https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/xit3LjRvKvM/upload/728eade2e69cdf7f4a587b371bd7112b.jpeg\",\n                \"slug\": \"fix-x-forwarded-for-header-validation-error-on-implementing-api-rate-limiting-eef2a49dfc4c\",\n                \"isPublished\": true,\n                \"createdAt\": \"2024-08-30T08:02:29.961Z\",\n                \"deletedAt\": null,\n                \"blogContent\": {\n                    \"html\": \"<p>You've just configured rate limiting on your API endpoints but performing a little test shows that you're getting rate limited when you're sure you shouldn't be. I was right in your shoes and the solution was a pretty interesting one. The logs are shown below:</p>\\n<pre><code class=\\\"lang-javascript\\\">ValidationError: The <span class=\\\"hljs-string\\\">'X-Forwarded-For'</span> header is set but the Express <span class=\\\"hljs-string\\\">'trust proxy'</span> setting is <span class=\\\"hljs-literal\\\">false</span> (<span class=\\\"hljs-keyword\\\">default</span>). This could indicate a misconfiguration which would prevent express-rate-limit <span class=\\\"hljs-keyword\\\">from</span> accurately identifying users. See https:<span class=\\\"hljs-comment\\\">//express-rate-limit.github.io/ERR_ERL_UNEXPECTED_X_FORWARDED_FOR/ for more information.</span>\\n    at <span class=\\\"hljs-built_in\\\">Object</span>.xForwardedForHeader (<span class=\\\"hljs-regexp\\\">/opt/</span>render/project/src/node_modules/express-rate-limit/dist/index.cjs:<span class=\\\"hljs-number\\\">166</span>:<span class=\\\"hljs-number\\\">13</span>)\\n    at <span class=\\\"hljs-built_in\\\">Object</span>.wrappedValidations.&lt;computed&gt; [<span class=\\\"hljs-keyword\\\">as</span> xForwardedForHeader] (<span class=\\\"hljs-regexp\\\">/opt/</span>render/project/src/node_modules/express-rate-limit/dist/index.cjs:<span class=\\\"hljs-number\\\">324</span>:<span class=\\\"hljs-number\\\">22</span>)\\n    at <span class=\\\"hljs-built_in\\\">Object</span>.keyGenerator (<span class=\\\"hljs-regexp\\\">/opt/</span>render/project/src/node_modules/express-rate-limit/dist/index.cjs:<span class=\\\"hljs-number\\\">579</span>:<span class=\\\"hljs-number\\\">20</span>)\\n    at /opt/render/project/src/node_modules/express-rate-limit/dist/index.cjs:<span class=\\\"hljs-number\\\">629</span>:<span class=\\\"hljs-number\\\">32</span>\\n    at runMicrotasks (<span class=\\\"xml\\\"><span class=\\\"hljs-tag\\\">&lt;<span class=\\\"hljs-name\\\">anonymous</span>&gt;</span>)\\n    at processTicksAndRejections (internal/process/task_queues.js:95:5)\\n    at async /opt/render/project/src/node_modules/express-rate-limit/dist/index.cjs:611:5 {\\n  code: 'ERR_ERL_UNEXPECTED_X_FORWARDED_FOR',\\n  help: 'https://express-rate-limit.github.io/ERR_ERL_UNEXPECTED_X_FORWARDED_FOR/'\\n}</span>\\n</code></pre>\\n<p>If you are behind a proxy/load balancer, which is usually the case with most hosting services like Render, Heroku, Cloudflare et al., the IP address of the request might be the IP of the load balancer/reverse proxy (making the rate limiter effectively a global one and blocking all requests once the limit is reached) or <code>undefined</code>.</p>\\n<p>The error above is logged when the <code>X-Forwarded-For</code> header (which indicates the use of a proxy) is set, but the trust proxy setting still has its default value of <code>false</code></p>\\n<p>To solve this issue, add the following line to your code (right after you create the express application)</p>\\n<pre><code class=\\\"lang-javascript\\\">app.set(<span class=\\\"hljs-string\\\">'trust proxy'</span>, <span class=\\\"hljs-number\\\">1</span>)\\napp.get(<span class=\\\"hljs-string\\\">'/ip'</span>, <span class=\\\"hljs-function\\\">(<span class=\\\"hljs-params\\\">request, response</span>) =&gt;</span> response.send(request.ip))\\napp.get(<span class=\\\"hljs-string\\\">'/x-forwarded-for'</span>, <span class=\\\"hljs-function\\\">(<span class=\\\"hljs-params\\\">request, response</span>) =&gt;</span> response.send(request.headers[<span class=\\\"hljs-string\\\">'x-forwarded-for'</span>]))\\n</code></pre>\\n<p>The value of <code>trust proxy</code> is the number of proxies between the user and the server. To find the correct number, you'd need to redeploy the application, and send a request while incrementing from 1..2..3...n until the request's IP matches your IP address (you can check <a target=\\\"_blank\\\" href=\\\"https://ip.nfriedly.com/\\\">https://ip.nfriedly.com/</a>)</p>\\n<p>If you test this locally, you will only get back an IP of \\\"::1\\\" and an empty <code>X-Forwarded-For</code> response because you're running locally, of course.</p>\\n<p><strong>Quick hint:</strong> The number of IP addresses in <code>GET /x-forwarded-for</code> response would give a good estimation of the number of proxies. Just so you don't search too long :-)</p>\",\n                    \"markdown\": \"You've just configured rate limiting on your API endpoints but performing a little test shows that you're getting rate limited when you're sure you shouldn't be. I was right in your shoes and the solution was a pretty interesting one. The logs are shown below:\\n\\n```javascript\\nValidationError: The 'X-Forwarded-For' header is set but the Express 'trust proxy' setting is false (default). This could indicate a misconfiguration which would prevent express-rate-limit from accurately identifying users. See https://express-rate-limit.github.io/ERR_ERL_UNEXPECTED_X_FORWARDED_FOR/ for more information.\\n    at Object.xForwardedForHeader (/opt/render/project/src/node_modules/express-rate-limit/dist/index.cjs:166:13)\\n    at Object.wrappedValidations.<computed> [as xForwardedForHeader] (/opt/render/project/src/node_modules/express-rate-limit/dist/index.cjs:324:22)\\n    at Object.keyGenerator (/opt/render/project/src/node_modules/express-rate-limit/dist/index.cjs:579:20)\\n    at /opt/render/project/src/node_modules/express-rate-limit/dist/index.cjs:629:32\\n    at runMicrotasks (<anonymous>)\\n    at processTicksAndRejections (internal/process/task_queues.js:95:5)\\n    at async /opt/render/project/src/node_modules/express-rate-limit/dist/index.cjs:611:5 {\\n  code: 'ERR_ERL_UNEXPECTED_X_FORWARDED_FOR',\\n  help: 'https://express-rate-limit.github.io/ERR_ERL_UNEXPECTED_X_FORWARDED_FOR/'\\n}\\n```\\n\\nIf you are behind a proxy/load balancer, which is usually the case with most hosting services like Render, Heroku, Cloudflare et al., the IP address of the request might be the IP of the load balancer/reverse proxy (making the rate limiter effectively a global one and blocking all requests once the limit is reached) or `undefined`.\\n\\nThe error above is logged when the `X-Forwarded-For` header (which indicates the use of a proxy) is set, but the trust proxy setting still has its default value of `false`\\n\\nTo solve this issue, add the following line to your code (right after you create the express application)\\n\\n```javascript\\napp.set('trust proxy', 1)\\napp.get('/ip', (request, response) => response.send(request.ip))\\napp.get('/x-forwarded-for', (request, response) => response.send(request.headers['x-forwarded-for']))\\n```\\n\\nThe value of `trust proxy` is the number of proxies between the user and the server. To find the correct number, you'd need to redeploy the application, and send a request while incrementing from 1..2..3...n until the request's IP matches your IP address (you can check [https://ip.nfriedly.com/](https://ip.nfriedly.com/))\\n\\nIf you test this locally, you will only get back an IP of \\\"::1\\\" and an empty `X-Forwarded-For` response because you're running locally, of course.\\n\\n**Quick hint:** The number of IP addresses in `GET /x-forwarded-for` response would give a good estimation of the number of proxies. Just so you don't search too long :-)\"\n                }\n            }\n        ]\n    }\n}"
 						}
 					]
 				}
@@ -1393,6 +1454,66 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": false,\n    \"message\": \"User already employed\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch organizations",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/organization",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"organization"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/organization",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"organization"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Organizations retrieved successfully\",\n    \"data\": {\n        \"total\": 1,\n        \"page\": 1,\n        \"previousPage\": null,\n        \"nextPage\": null,\n        \"lastPage\": 1,\n        \"items\": [\n            {\n                \"organizationId\": \"95aa9d0a-41be-4f1a-aa89-f8012d5e12dd\",\n                \"name\": \"Analytics Intelligence\",\n                \"logo\": \"https://analyticsintelligence.com/static/media/logo.598c36a3e2a40a7a65b239d7858a8cda.svg\",\n                \"tagline\": \"Making Analyics and Artificial Intelligence Accessible to All\",\n                \"websiteUrl\": \"https://analyticsintelligence.com\",\n                \"createdAt\": \"2024-08-30T07:55:13.915Z\",\n                \"deletedAt\": null\n            }\n        ]\n    }\n}"
 						}
 					]
 				}

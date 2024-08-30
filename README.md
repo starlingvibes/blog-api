@@ -116,17 +116,6 @@ REDIS_URL=
 npm start
 ```
 
-
-# ## Testing
-
-# The API includes unit tests implemented using Jest.
-
-# To run tests:
-
-# ```bash
-# npm run test
-# ```
-
 ## Dockerization 
 
 The API is containerized using Docker. A docker-compose.yaml file is provided in the repository. To build and run the Docker container:
