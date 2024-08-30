@@ -1,0 +1,58 @@
+version: '3.8'
+services:
+  nginx-proxy-manager:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '8090:81'
+      - '443:443'
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    depends_on:
+      - postgresdb
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  postgresdb:
+    image: postgres:latest
+    env_file:
+      - ./.env
+    environment:
+      POSTGRES_USER: ${DEVELOPMENT_DB_USERNAME}
+      POSTGRES_PASSWORD: ${DEVELOPMENT_DB_PASSWORD}
+      POSTGRES_DB: ${DEVELOPMENT_DB_NAME}
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - '1337:1337'
+    env_file:
+      - ./.env
+    depends_on:
+      postgresdb:
+        condition: service_healthy
+    command: sh -c "sleep 10 && npm run migrate && npm run seed && npm start"
+
+volumes:
+  postgres_data:
+
+networks:
+  default:
+    name: blog-api
