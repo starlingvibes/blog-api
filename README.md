@@ -132,6 +132,24 @@ You can find a Postman collection with example API requests in the `docs` direct
 
 The API documentation is available at `/swagger` endpoint. You can view the documentation by navigating to `http://{{url}}/swagger` in your browser. The postman documentation is almost always more up-to-date than the swagger documentation, so you should use the postman documentation for the most accurate information.
 
+## Entity Relationship Diagram
+
+An ERD of the database schema is available in the `docs` directory. You can view the ERD by opening the `entity-relationship-diagram.png` file in your browser, it shows the database schema and the relationships between the tables.
+
+## Architecture design
+
+### Deployment
+
+The API is deployed on [Render](https://render.com/), a cloud platform that automates code to global deployments in seconds. 
+
+### Scaling strategies
+
+The application can scale in multiple ways:
+
+- **Horizontal scaling**: The application can be scaled horizontally by adding more instances. This can be done by deploying multiple instances of the application behind a load balancer and would help in distributing the load across multiple instances.
+- **Vertical scaling**: The application can be scaled vertically by increasing the resources available to each instance of the application. This can be done by increasing the memory and CPU resources allocated to each instance.
+- **Load balancing**: The application can be scaled by using load balancing to distribute requests across multiple instances of the application.
+
 ## Contributing
 
 Contributions to this project are welcome! Feel free to submit issues and pull requests.
