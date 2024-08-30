@@ -6,7 +6,7 @@ class OrganizationServices {
   fetchAllOrganizations = async (req) => {
     try {
       const token = await helper.extractToken(req);
-      await jwt.authUserOrAdmin(token);
+      await jwt.authAdmin(token);
       return await query.fetchOrganizations(req.query);
     } catch (error) {
       throw error;

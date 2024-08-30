@@ -58,14 +58,12 @@ class QueryServices {
 
   fetchOrganizations = async (query) => {
     try {
-      let { page = 1, limit = 10, title, q } = query;
+      let { page = 1, limit = 10, q } = query;
 
       page = parseInt(page, 10);
       limit = parseInt(limit, 10);
 
       let where = {};
-
-      if (title) where = { ...where, title: { [Op.like]: `%${title}%` } };
 
       if (q)
         where = {
@@ -77,13 +75,6 @@ class QueryServices {
         where,
         offset: (page - 1) * limit,
         limit,
-        include: [
-          {
-            model: OrganizationContent,
-            as: 'organizationContent',
-            attributes: ['html', 'markdown'],
-          },
-        ],
       });
 
       return {

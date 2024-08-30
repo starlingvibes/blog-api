@@ -27,14 +27,14 @@ organizationRouter.post(
   }
 );
 
-// organizationRouter.get('/', inputs.fetchOrganizations(), async (req, res) => {
-//   try {
-//     const result = await organizations.fetchAllOrganizations(req);
-//     response.success(res, 'Organizations retrieved successfully', result);
-//   } catch (error) {
-//     response.error(res, error.message);
-//   }
-// });
+organizationRouter.get('/', inputs.fetchOrganizations(), async (req, res) => {
+  try {
+    const result = await organizations.fetchAllOrganizations(req);
+    response.success(res, 'Organizations retrieved successfully', result);
+  } catch (error) {
+    response.error(res, error.message);
+  }
+});
 
 // organizationRouter.get(
 //   '/:organizationId',
