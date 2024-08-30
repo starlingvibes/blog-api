@@ -4,6 +4,8 @@ const cors = require('cors');
 const appRouter = require('./routes');
 const { isCelebrateError } = require('celebrate');
 const { response } = require('./src/utils/responses');
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
 const app = express();
 
 const corsOptions = {
@@ -16,6 +18,10 @@ app.use(helmet());
 app.use(express.json());
 
 appRouter(app);
+
+const swaggerDocument = YAML.load('./docs/swagger-docs.yaml');
+
+app.use(`/swagger`, swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((error, req, res, next) => {
   if (isCelebrateError(error)) {

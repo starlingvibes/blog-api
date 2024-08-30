@@ -1,0 +1,901 @@
+openapi: 3.0.0
+info:
+  title: Blog API
+  version: 1.0.0
+servers:
+  - url: http://localhost:1337
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: Authentication
+  - name: Profile
+  - name: Blog
+  - name: Organization
+paths:
+  /v1/auth/signup:
+    post:
+      tags:
+        - Authentication
+      summary: Register user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                firstName: Chidera
+                lastName: Anichebe
+                email: starlingmediang@gmail.com
+                password: S3cureBlog
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: User account created successfully
+                data: null
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: Email address already exists
+                data: null
+  /v1/auth/signin:
+    post:
+      tags:
+        - Authentication
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: starlingmediang@gmail.com
+                password: S3cureBlog
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: You've signed in successfully
+                data:
+                  token: >-
+                    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiMWJhZjkyNTItNmUyMi00ZDE3LWI0ZWItZTgzMmFjYWQwZGU5IiwiaWQiOiI1MTAzOTIxNTg0IiwiaWF0IjoxNzI0OTMzNDMxfQ.m7M2qiKw58FbnotEYUZvzELwUhq8w6koyWoBcFcOz7s
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: Incorrect email or password
+                data: null
+  /v1/profile:
+    get:
+      tags:
+        - Profile
+      summary: Fetch profile
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Profile fetched successfully
+                data:
+                  userId: 1baf9252-6e22-4d17-b4eb-e832acad0de9
+                  firstName: Chidera
+                  lastName: Anichebe
+                  email: dera@ieee.org
+                  profileImage: >-
+                    https://res.cloudinary.com/taliot/image/upload/v1697199168/assets/landing_page/rbcmrygjs9edq5qbnh9p.png
+                  isAdmin: false
+                  isAccountActive: true
+                  createdAt: '2024-08-29T12:03:49.821Z'
+                  deletedAt: null
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: invalidToken
+                data: null
+  /v1/blog:
+    post:
+      tags:
+        - Blog
+      summary: Create blog
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: Big O Notation and Asymptotic Analysis (Presentation)
+                description: >-
+                  Understanding Big O Notation, Theta notation and Omega
+                  notation. Knowing how to analyze common algorithms and common
+                  mistakes to avoid
+                html: >
+                  <p>Good day everyone, it's been a long minute since I wrote an
+                  article on here due to some circumstances that I hope would
+                  get sorted soon enough, a tiny little bit of procrastination
+                  😉</p>
+
+                  <p>But then, I hosted a session for the IEEEXtreme Nigeria
+                  Data Structures and Algorithms group and would love to share
+                  my slides. Do check it out <a target="_blank"
+                  href="https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001">here</a>!</p>
+
+                  <p>Until next time... 🥂</p>
+                markdown: >-
+                  Good day everyone, it's been a long minute since I wrote an
+                  article on here due to some circumstances that I hope would
+                  get sorted soon enough, a tiny little bit of procrastination
+                  😉
+
+
+                  But then, I hosted a session for the IEEEXtreme Nigeria Data
+                  Structures and Algorithms group and would love to share my
+                  slides. Do check it out
+                  [here](https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001)!
+
+
+                  Until next time... 🥂
+                coverImage: >-
+                  https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Success
+                  value:
+                    status: true
+                    message: Blog created successfully
+                    data:
+                      blogId: b83dbf74-8c97-4af4-84d6-a6daf82d9b8e
+                      title: Big O Notation and Asymptotic Analysis (Presentation)
+                      description: >-
+                        Understanding Big O Notation, Theta notation and Omega
+                        notation. Knowing how to analyze common algorithms and
+                        common mistakes to avoid
+                      coverImage: >-
+                        https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg
+                      slug: >-
+                        big-o-notation-and-asymptotic-analysis-presentation-b674cfde388a
+                      userId: d489669e-474f-400f-acca-af2ddf815a0b
+                      blogContentId: 3729da81-8f1f-4a81-8908-8ddaec2c069f
+                      isApproved: true
+                      isPublished: true
+                      createdAt: '2024-08-29T17:48:23.448Z'
+                      deletedAt: null
+                example-1:
+                  summary: Success - Not Employee
+                  value:
+                    status: true
+                    message: Blog created successfully
+                    data:
+                      blogRevisionId: c51c588b-a060-49d3-bf21-0c8073da952d
+                      title: Big O Notation and Asymptotic Analysis (Presentation)
+                      description: >-
+                        Understanding Big O Notation, Theta notation and Omega
+                        notation. Knowing how to analyze common algorithms and
+                        common mistakes to avoid
+                      coverImage: >-
+                        https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg
+                      slug: >-
+                        big-o-notation-and-asymptotic-analysis-presentation-9b2622d2cee3
+                      blogId: 245f0a67-174b-4824-8cfb-cc8db4cd4c05
+                      blogContentId: 9a84adda-b23a-4e81-8949-5782aa0c75ef
+                      revisionType: CREATE
+                      createdAt: '2024-08-29T21:09:35.437Z'
+                      revisionDate: null
+                      deletedAt: null
+    get:
+      tags:
+        - Blog
+      summary: Fetch all blogs
+      parameters:
+        - name: title
+          in: query
+          schema:
+            type: string
+          example: Big
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Blogs retrieved successfully
+                data:
+                  total: 1
+                  items:
+                    - blogId: b83dbf74-8c97-4af4-84d6-a6daf82d9b8e
+                      userId: d489669e-474f-400f-acca-af2ddf815a0b
+                      blogContentId: 3729da81-8f1f-4a81-8908-8ddaec2c069f
+                      title: Big O Notation and Asymptotic Analysis (Presentation)
+                      description: >-
+                        Understanding Big O Notation, Theta notation and Omega
+                        notation. Knowing how to analyze common algorithms and
+                        common mistakes to avoid
+                      coverImage: >-
+                        https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg
+                      slug: >-
+                        big-o-notation-and-asymptotic-analysis-presentation-b674cfde388a
+                      isApproved: true
+                      isPublished: true
+                      createdAt: '2024-08-29T17:48:23.448Z'
+                      deletedAt: null
+                      blogContent:
+                        html: >-
+                          <p>Good day everyone, it's been a long minute since I
+                          wrote an article on here due to some circumstances
+                          that I hope would get sorted soon enough, a tiny
+                          little bit of procrastination 😉</p>
+
+                          <p>But then, I hosted a session for the IEEEXtreme
+                          Nigeria Data Structures and Algorithms group and would
+                          love to share my slides. Do check it out <a
+                          target="_blank"
+                          href="https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001">here</a>!</p>
+
+                          <p>Until next time... 🥂</p>
+                        markdown: >-
+                          Good day everyone, it's been a long minute since I
+                          wrote an article on here due to some circumstances
+                          that I hope would get sorted soon enough, a tiny
+                          little bit of procrastination 😉
+
+
+                          But then, I hosted a session for the IEEEXtreme
+                          Nigeria Data Structures and Algorithms group and would
+                          love to share my slides. Do check it out
+                          [here](https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001)!
+
+
+                          Until next time... 🥂
+                  page: 1
+                  lastPage: 1
+  /v1/blog/b83dbf74-8c97-4af4-84d6-a6daf82d9b8e:
+    get:
+      tags:
+        - Blog
+      summary: Fetch blog by ID
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Blog retrieved successfully
+                data:
+                  blogId: b83dbf74-8c97-4af4-84d6-a6daf82d9b8e
+                  userId: d489669e-474f-400f-acca-af2ddf815a0b
+                  blogContentId: 3729da81-8f1f-4a81-8908-8ddaec2c069f
+                  title: Big O Notation and Asymptotic Analysis (Presentation)
+                  description: >-
+                    Understanding Big O Notation, Theta notation and Omega
+                    notation. Knowing how to analyze common algorithms and
+                    common mistakes to avoid
+                  coverImage: >-
+                    https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg
+                  slug: >-
+                    big-o-notation-and-asymptotic-analysis-presentation-b674cfde388a
+                  isApproved: true
+                  isPublished: true
+                  createdAt: '2024-08-29T17:48:23.448Z'
+                  deletedAt: null
+                  blogContent:
+                    html: >-
+                      <p>Good day everyone, it's been a long minute since I
+                      wrote an article on here due to some circumstances that I
+                      hope would get sorted soon enough, a tiny little bit of
+                      procrastination 😉</p>
+
+                      <p>But then, I hosted a session for the IEEEXtreme Nigeria
+                      Data Structures and Algorithms group and would love to
+                      share my slides. Do check it out <a target="_blank"
+                      href="https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001">here</a>!</p>
+
+                      <p>Until next time... 🥂</p>
+                    markdown: >-
+                      Good day everyone, it's been a long minute since I wrote
+                      an article on here due to some circumstances that I hope
+                      would get sorted soon enough, a tiny little bit of
+                      procrastination 😉
+
+
+                      But then, I hosted a session for the IEEEXtreme Nigeria
+                      Data Structures and Algorithms group and would love to
+                      share my slides. Do check it out
+                      [here](https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001)!
+
+
+                      Until next time... 🥂
+  /v1/blog/big-o-notation-and-asymptotic-analysis-presentation-b674cfde388a:
+    get:
+      tags:
+        - Blog
+      summary: Fetch blog by slug
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Blog retrieved successfully
+                data:
+                  blogId: b83dbf74-8c97-4af4-84d6-a6daf82d9b8e
+                  userId: d489669e-474f-400f-acca-af2ddf815a0b
+                  blogContentId: 3729da81-8f1f-4a81-8908-8ddaec2c069f
+                  title: Big O Notation and Asymptotic Analysis (Presentation)
+                  description: >-
+                    Understanding Big O Notation, Theta notation and Omega
+                    notation. Knowing how to analyze common algorithms and
+                    common mistakes to avoid
+                  coverImage: >-
+                    https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg
+                  slug: >-
+                    big-o-notation-and-asymptotic-analysis-presentation-b674cfde388a
+                  isApproved: true
+                  isPublished: true
+                  createdAt: '2024-08-29T17:48:23.448Z'
+                  deletedAt: null
+                  blogContent:
+                    html: >-
+                      <p>Good day everyone, it's been a long minute since I
+                      wrote an article on here due to some circumstances that I
+                      hope would get sorted soon enough, a tiny little bit of
+                      procrastination 😉</p>
+
+                      <p>But then, I hosted a session for the IEEEXtreme Nigeria
+                      Data Structures and Algorithms group and would love to
+                      share my slides. Do check it out <a target="_blank"
+                      href="https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001">here</a>!</p>
+
+                      <p>Until next time... 🥂</p>
+                    markdown: >-
+                      Good day everyone, it's been a long minute since I wrote
+                      an article on here due to some circumstances that I hope
+                      would get sorted soon enough, a tiny little bit of
+                      procrastination 😉
+
+
+                      But then, I hosted a session for the IEEEXtreme Nigeria
+                      Data Structures and Algorithms group and would love to
+                      share my slides. Do check it out
+                      [here](https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001)!
+
+
+                      Until next time... 🥂
+  /v1/blog/revision:
+    get:
+      tags:
+        - Blog
+      summary: Fetch blog revisions
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+          example: pending
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Blogs revisions retrieved successfully
+                data:
+                  total: 1
+                  page: 1
+                  lastPage: 1
+                  items:
+                    - blogRevisionId: 8c97d3b8-bfd9-4c7b-89cf-b3c71c69516a
+                      userId: 250451ca-07e8-4a03-8cd4-80467d09af36
+                      blogId: 29ed51ee-00bd-4d13-ac50-bbbba3deceb9
+                      blogContentId: 56a6bc3d-ac9a-4426-95f4-14fc5a51d816
+                      title: Big O Notation and Asymptotic Analysis (Presentation)
+                      description: >-
+                        Understanding Big O Notation, Theta notation and Omega
+                        notation. Knowing how to analyze common algorithms and
+                        common mistakes to avoid
+                      coverImage: >-
+                        https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg
+                      slug: >-
+                        big-o-notation-and-asymptotic-analysis-presentation-d851e62c9208
+                      status: pending
+                      revisionType: CREATE
+                      revisionDate: null
+                      createdAt: '2024-08-29T21:36:53.516Z'
+                      deletedAt: null
+                      blogContent:
+                        html: >-
+                          <p>Good day everyone, it's been a long minute since I
+                          wrote an article on here due to some circumstances
+                          that I hope would get sorted soon enough, a tiny
+                          little bit of procrastination 😉</p>
+
+                          <p>But then, I hosted a session for the IEEEXtreme
+                          Nigeria Data Structures and Algorithms group and would
+                          love to share my slides. Do check it out <a
+                          target="_blank"
+                          href="https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001">here</a>!</p>
+
+                          <p>Until next time... 🥂</p>
+                        markdown: >-
+                          Good day everyone, it's been a long minute since I
+                          wrote an article on here due to some circumstances
+                          that I hope would get sorted soon enough, a tiny
+                          little bit of procrastination 😉
+
+
+                          But then, I hosted a session for the IEEEXtreme
+                          Nigeria Data Structures and Algorithms group and would
+                          love to share my slides. Do check it out
+                          [here](https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001)!
+
+
+                          Until next time... 🥂
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: Unauthorized access
+                data: null
+  /v1/blog/revision/evaluate:
+    post:
+      tags:
+        - Blog
+      summary: Evaluate blog revision
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                blogRevisionId: 72267d9d-4e0a-44ce-8aaf-7788259a8a12
+                action: approve
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Successful rejection
+                  value:
+                    status: true
+                    message: Blog revision evaluated successfully
+                    data:
+                      blogRevisionId: 8c97d3b8-bfd9-4c7b-89cf-b3c71c69516a
+                      userId: 250451ca-07e8-4a03-8cd4-80467d09af36
+                      blogId: 29ed51ee-00bd-4d13-ac50-bbbba3deceb9
+                      blogContentId: 56a6bc3d-ac9a-4426-95f4-14fc5a51d816
+                      title: Big O Notation and Asymptotic Analysis (Presentation)
+                      description: >-
+                        Understanding Big O Notation, Theta notation and Omega
+                        notation. Knowing how to analyze common algorithms and
+                        common mistakes to avoid
+                      coverImage: >-
+                        https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg
+                      slug: >-
+                        big-o-notation-and-asymptotic-analysis-presentation-d851e62c9208
+                      status: rejected
+                      revisionType: CREATE
+                      revisionDate: '2024-08-29T22:03:16.632Z'
+                      createdAt: '2024-08-29T21:36:53.516Z'
+                      deletedAt: null
+                      blogContent:
+                        html: >-
+                          <p>Good day everyone, it's been a long minute since I
+                          wrote an article on here due to some circumstances
+                          that I hope would get sorted soon enough, a tiny
+                          little bit of procrastination 😉</p>
+
+                          <p>But then, I hosted a session for the IEEEXtreme
+                          Nigeria Data Structures and Algorithms group and would
+                          love to share my slides. Do check it out <a
+                          target="_blank"
+                          href="https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001">here</a>!</p>
+
+                          <p>Until next time... 🥂</p>
+                        markdown: >-
+                          Good day everyone, it's been a long minute since I
+                          wrote an article on here due to some circumstances
+                          that I hope would get sorted soon enough, a tiny
+                          little bit of procrastination 😉
+
+
+                          But then, I hosted a session for the IEEEXtreme
+                          Nigeria Data Structures and Algorithms group and would
+                          love to share my slides. Do check it out
+                          [here](https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001)!
+
+
+                          Until next time... 🥂
+                example-1:
+                  summary: Successful approval
+                  value:
+                    status: true
+                    message: Blog revision evaluated successfully
+                    data:
+                      blogId: bc12f0fe-4d2b-45a6-9172-b0492698c9e0
+                      userId: 250451ca-07e8-4a03-8cd4-80467d09af36
+                      blogContentId: d9ecc897-c43e-4cfd-abb0-3839a6c5227a
+                      title: Big O Notation and Asymptotic Analysis (Presentation)
+                      description: >-
+                        Understanding Big O Notation, Theta notation and Omega
+                        notation. Knowing how to analyze common algorithms and
+                        common mistakes to avoid
+                      slug: >-
+                        big-o-notation-and-asymptotic-analysis-presentation-78d3c66582ba
+                      coverImage: >-
+                        https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg
+                      isApproved: true
+                      isPublished: true
+                      createdAt: '2024-08-29T23:12:56.422Z'
+                      deletedAt: null
+  /v1/blog/ef66e42e-729b-402e-bfe0-f4bb5020605e:
+    delete:
+      tags:
+        - Blog
+      summary: Delete blog
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Delete blog
+                  value:
+                    status: true
+                    message: Blog deleted successfully
+                    data: null
+                example-1:
+                  summary: Successful deletion request
+                  value:
+                    status: true
+                    message: Blog deletion pending admin approval
+                    data: null
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: Access denied
+                data: null
+  /v1/blog/bc12f0fe-4d2b-45a6-9172-b0492698c9e0:
+    put:
+      tags:
+        - Blog
+      summary: Update blog
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: New title
+                html: Bla bla
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Successful update request
+                  value:
+                    status: true
+                    message: Blog update pending admin approval
+                    data: null
+                example-1:
+                  summary: Successful update
+                  value:
+                    status: true
+                    message: Blog updated successfully
+                    data: null
+  /v1/organization:
+    post:
+      tags:
+        - Organization
+      summary: Create organization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Analytics Intelligence
+                logo: >-
+                  https://analyticsintelligence.com/static/media/logo.598c36a3e2a40a7a65b239d7858a8cda.svg
+                tagline: Making Analyics and Artificial Intelligence Accessible to All
+                websiteUrl: https://analyticsintelligence.com
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Organization created successfully
+                data:
+                  organizationId: 517656a5-55f6-4e60-8976-9bdbd210b553
+                  name: Analytics Intelligence
+                  logo: >-
+                    https://analyticsintelligence.com/static/media/logo.598c36a3e2a40a7a65b239d7858a8cda.svg
+                  tagline: >-
+                    Making Analyics and Artificial Intelligence Accessible to
+                    All
+                  websiteUrl: https://analyticsintelligence.com
+                  createdAt: '2024-08-29T13:31:49.605Z'
+                  deletedAt: null
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Unauthenticated
+                  value:
+                    status: false
+                    message: invalidToken
+                    data: null
+                example-1:
+                  summary: Unauthorized user
+                  value:
+                    status: false
+                    message: Access denied, only admin can create an organization
+                    data: null
+  /v1/organization/employee:
+    post:
+      tags:
+        - Organization
+      summary: Add employee to organization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                organizationId: 517656a5-55f6-4e60-8976-9bdbd210b553
+                userId: f9f151d9-918b-4bf9-97df-fb7fa37e70f8
+                position: Software Engineer
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Employee added successfully
+                data: null
+        '400':
+          description: Bad Request
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: false
+                message: User already employed
+                data: null
+  /v1/health:
+    get:
+      tags:
+        - default
+      summary: Server health
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                status: true
+                message: Server is healthy and running on port 1338
+                data: null
