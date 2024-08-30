@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Chidera\",\r\n    \"lastName\": \"Anichebe\",\r\n    \"email\": \"dera@ieee.org\",\r\n    \"password\": \"S3cureBlog\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"Chidera\",\r\n    \"lastName\": \"Anichebe\",\r\n    \"email\": \"starlingmediang@gmail.com\",\r\n    \"password\": \"S3cureBlog\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -131,7 +131,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"dera@ieee.org\",\r\n    \"password\": \"S3cureBlog\"\r\n}",
+							"raw": "{\r\n    \"email\": \"starlingmediang@gmail.com\",\r\n    \"password\": \"S3cureBlog\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -139,14 +139,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/v1/auth/user/signin",
+							"raw": "{{url}}/v1/auth/signin",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"v1",
 								"auth",
-								"user",
 								"signin"
 							]
 						}
@@ -325,6 +324,1075 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": true,\n    \"message\": \"Profile fetched successfully\",\n    \"data\": {\n        \"userId\": \"1baf9252-6e22-4d17-b4eb-e832acad0de9\",\n        \"firstName\": \"Chidera\",\n        \"lastName\": \"Anichebe\",\n        \"email\": \"dera@ieee.org\",\n        \"profileImage\": \"https://res.cloudinary.com/taliot/image/upload/v1697199168/assets/landing_page/rbcmrygjs9edq5qbnh9p.png\",\n        \"isAdmin\": false,\n        \"isAccountActive\": true,\n        \"createdAt\": \"2024-08-29T12:03:49.821Z\",\n        \"deletedAt\": null\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Blog",
+			"item": [
+				{
+					"name": "Create blog",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Big O Notation and Asymptotic Analysis (Presentation)\",\r\n    \"description\": \"Understanding Big O Notation, Theta notation and Omega notation. Knowing how to analyze common algorithms and common mistakes to avoid\",\r\n    \"html\": \"<p>Good day everyone, it's been a long minute since I wrote an article on here due to some circumstances that I hope would get sorted soon enough, a tiny little bit of procrastination 😉</p>\\n<p>But then, I hosted a session for the IEEEXtreme Nigeria Data Structures and Algorithms group and would love to share my slides. Do check it out <a target=\\\"_blank\\\" href=\\\"https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001\\\">here</a>!</p>\\n<p>Until next time... 🥂</p>\\n\",\r\n    \"markdown\": \"Good day everyone, it's been a long minute since I wrote an article on here due to some circumstances that I hope would get sorted soon enough, a tiny little bit of procrastination 😉\\n\\nBut then, I hosted a session for the IEEEXtreme Nigeria Data Structures and Algorithms group and would love to share my slides. Do check it out [here](https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001)!\\n\\nUntil next time... 🥂\",\r\n    \"coverImage\": \"https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/blog",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"blog"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Big O Notation and Asymptotic Analysis (Presentation)\",\r\n    \"description\": \"Understanding Big O Notation, Theta notation and Omega notation. Knowing how to analyze common algorithms and common mistakes to avoid\",\r\n    \"html\": \"<p>Good day everyone, it's been a long minute since I wrote an article on here due to some circumstances that I hope would get sorted soon enough, a tiny little bit of procrastination 😉</p>\\n<p>But then, I hosted a session for the IEEEXtreme Nigeria Data Structures and Algorithms group and would love to share my slides. Do check it out <a target=\\\"_blank\\\" href=\\\"https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001\\\">here</a>!</p>\\n<p>Until next time... 🥂</p>\\n\",\r\n    \"markdown\": \"Good day everyone, it's been a long minute since I wrote an article on here due to some circumstances that I hope would get sorted soon enough, a tiny little bit of procrastination 😉\\n\\nBut then, I hosted a session for the IEEEXtreme Nigeria Data Structures and Algorithms group and would love to share my slides. Do check it out [here](https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001)!\\n\\nUntil next time... 🥂\",\r\n    \"coverImage\": \"https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/blog",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"blog"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Blog created successfully\",\n    \"data\": {\n        \"blogId\": \"b83dbf74-8c97-4af4-84d6-a6daf82d9b8e\",\n        \"title\": \"Big O Notation and Asymptotic Analysis (Presentation)\",\n        \"description\": \"Understanding Big O Notation, Theta notation and Omega notation. Knowing how to analyze common algorithms and common mistakes to avoid\",\n        \"coverImage\": \"https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg\",\n        \"slug\": \"big-o-notation-and-asymptotic-analysis-presentation-b674cfde388a\",\n        \"userId\": \"d489669e-474f-400f-acca-af2ddf815a0b\",\n        \"blogContentId\": \"3729da81-8f1f-4a81-8908-8ddaec2c069f\",\n        \"isApproved\": true,\n        \"isPublished\": true,\n        \"createdAt\": \"2024-08-29T17:48:23.448Z\",\n        \"deletedAt\": null\n    }\n}"
+						},
+						{
+							"name": "Success - Not Employee",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Big O Notation and Asymptotic Analysis (Presentation)\",\r\n    \"description\": \"Understanding Big O Notation, Theta notation and Omega notation. Knowing how to analyze common algorithms and common mistakes to avoid\",\r\n    \"html\": \"<p>Good day everyone, it's been a long minute since I wrote an article on here due to some circumstances that I hope would get sorted soon enough, a tiny little bit of procrastination 😉</p>\\n<p>But then, I hosted a session for the IEEEXtreme Nigeria Data Structures and Algorithms group and would love to share my slides. Do check it out <a target=\\\"_blank\\\" href=\\\"https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001\\\">here</a>!</p>\\n<p>Until next time... 🥂</p>\\n\",\r\n    \"markdown\": \"Good day everyone, it's been a long minute since I wrote an article on here due to some circumstances that I hope would get sorted soon enough, a tiny little bit of procrastination 😉\\n\\nBut then, I hosted a session for the IEEEXtreme Nigeria Data Structures and Algorithms group and would love to share my slides. Do check it out [here](https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001)!\\n\\nUntil next time... 🥂\",\r\n    \"coverImage\": \"https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/blog",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"blog"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Blog created successfully\",\n    \"data\": {\n        \"blogRevisionId\": \"c51c588b-a060-49d3-bf21-0c8073da952d\",\n        \"title\": \"Big O Notation and Asymptotic Analysis (Presentation)\",\n        \"description\": \"Understanding Big O Notation, Theta notation and Omega notation. Knowing how to analyze common algorithms and common mistakes to avoid\",\n        \"coverImage\": \"https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg\",\n        \"slug\": \"big-o-notation-and-asymptotic-analysis-presentation-9b2622d2cee3\",\n        \"blogId\": \"245f0a67-174b-4824-8cfb-cc8db4cd4c05\",\n        \"blogContentId\": \"9a84adda-b23a-4e81-8949-5782aa0c75ef\",\n        \"revisionType\": \"CREATE\",\n        \"createdAt\": \"2024-08-29T21:09:35.437Z\",\n        \"revisionDate\": null,\n        \"deletedAt\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch all blogs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/blog?title=Big&page=1&limit=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"blog"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "Big"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/blog?title=Big&page=1&limit=10",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"blog"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "Big"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Blogs retrieved successfully\",\n    \"data\": {\n        \"total\": 1,\n        \"items\": [\n            {\n                \"blogId\": \"b83dbf74-8c97-4af4-84d6-a6daf82d9b8e\",\n                \"userId\": \"d489669e-474f-400f-acca-af2ddf815a0b\",\n                \"blogContentId\": \"3729da81-8f1f-4a81-8908-8ddaec2c069f\",\n                \"title\": \"Big O Notation and Asymptotic Analysis (Presentation)\",\n                \"description\": \"Understanding Big O Notation, Theta notation and Omega notation. Knowing how to analyze common algorithms and common mistakes to avoid\",\n                \"coverImage\": \"https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg\",\n                \"slug\": \"big-o-notation-and-asymptotic-analysis-presentation-b674cfde388a\",\n                \"isApproved\": true,\n                \"isPublished\": true,\n                \"createdAt\": \"2024-08-29T17:48:23.448Z\",\n                \"deletedAt\": null,\n                \"blogContent\": {\n                    \"html\": \"<p>Good day everyone, it's been a long minute since I wrote an article on here due to some circumstances that I hope would get sorted soon enough, a tiny little bit of procrastination 😉</p>\\n<p>But then, I hosted a session for the IEEEXtreme Nigeria Data Structures and Algorithms group and would love to share my slides. Do check it out <a target=\\\"_blank\\\" href=\\\"https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001\\\">here</a>!</p>\\n<p>Until next time... 🥂</p>\",\n                    \"markdown\": \"Good day everyone, it's been a long minute since I wrote an article on here due to some circumstances that I hope would get sorted soon enough, a tiny little bit of procrastination 😉\\n\\nBut then, I hosted a session for the IEEEXtreme Nigeria Data Structures and Algorithms group and would love to share my slides. Do check it out [here](https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001)!\\n\\nUntil next time... 🥂\"\n                }\n            }\n        ],\n        \"page\": 1,\n        \"lastPage\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch blog by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/blog/b83dbf74-8c97-4af4-84d6-a6daf82d9b8e",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"b83dbf74-8c97-4af4-84d6-a6daf82d9b8e"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/blog/b83dbf74-8c97-4af4-84d6-a6daf82d9b8e",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"blog",
+										"b83dbf74-8c97-4af4-84d6-a6daf82d9b8e"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Blog retrieved successfully\",\n    \"data\": {\n        \"blogId\": \"b83dbf74-8c97-4af4-84d6-a6daf82d9b8e\",\n        \"userId\": \"d489669e-474f-400f-acca-af2ddf815a0b\",\n        \"blogContentId\": \"3729da81-8f1f-4a81-8908-8ddaec2c069f\",\n        \"title\": \"Big O Notation and Asymptotic Analysis (Presentation)\",\n        \"description\": \"Understanding Big O Notation, Theta notation and Omega notation. Knowing how to analyze common algorithms and common mistakes to avoid\",\n        \"coverImage\": \"https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg\",\n        \"slug\": \"big-o-notation-and-asymptotic-analysis-presentation-b674cfde388a\",\n        \"isApproved\": true,\n        \"isPublished\": true,\n        \"createdAt\": \"2024-08-29T17:48:23.448Z\",\n        \"deletedAt\": null,\n        \"blogContent\": {\n            \"html\": \"<p>Good day everyone, it's been a long minute since I wrote an article on here due to some circumstances that I hope would get sorted soon enough, a tiny little bit of procrastination 😉</p>\\n<p>But then, I hosted a session for the IEEEXtreme Nigeria Data Structures and Algorithms group and would love to share my slides. Do check it out <a target=\\\"_blank\\\" href=\\\"https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001\\\">here</a>!</p>\\n<p>Until next time... 🥂</p>\",\n            \"markdown\": \"Good day everyone, it's been a long minute since I wrote an article on here due to some circumstances that I hope would get sorted soon enough, a tiny little bit of procrastination 😉\\n\\nBut then, I hosted a session for the IEEEXtreme Nigeria Data Structures and Algorithms group and would love to share my slides. Do check it out [here](https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001)!\\n\\nUntil next time... 🥂\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch blog by slug",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/blog/big-o-notation-and-asymptotic-analysis-presentation-b674cfde388a",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"big-o-notation-and-asymptotic-analysis-presentation-b674cfde388a"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/blog/big-o-notation-and-asymptotic-analysis-presentation-b674cfde388a",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"blog",
+										"big-o-notation-and-asymptotic-analysis-presentation-b674cfde388a"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Blog retrieved successfully\",\n    \"data\": {\n        \"blogId\": \"b83dbf74-8c97-4af4-84d6-a6daf82d9b8e\",\n        \"userId\": \"d489669e-474f-400f-acca-af2ddf815a0b\",\n        \"blogContentId\": \"3729da81-8f1f-4a81-8908-8ddaec2c069f\",\n        \"title\": \"Big O Notation and Asymptotic Analysis (Presentation)\",\n        \"description\": \"Understanding Big O Notation, Theta notation and Omega notation. Knowing how to analyze common algorithms and common mistakes to avoid\",\n        \"coverImage\": \"https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg\",\n        \"slug\": \"big-o-notation-and-asymptotic-analysis-presentation-b674cfde388a\",\n        \"isApproved\": true,\n        \"isPublished\": true,\n        \"createdAt\": \"2024-08-29T17:48:23.448Z\",\n        \"deletedAt\": null,\n        \"blogContent\": {\n            \"html\": \"<p>Good day everyone, it's been a long minute since I wrote an article on here due to some circumstances that I hope would get sorted soon enough, a tiny little bit of procrastination 😉</p>\\n<p>But then, I hosted a session for the IEEEXtreme Nigeria Data Structures and Algorithms group and would love to share my slides. Do check it out <a target=\\\"_blank\\\" href=\\\"https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001\\\">here</a>!</p>\\n<p>Until next time... 🥂</p>\",\n            \"markdown\": \"Good day everyone, it's been a long minute since I wrote an article on here due to some circumstances that I hope would get sorted soon enough, a tiny little bit of procrastination 😉\\n\\nBut then, I hosted a session for the IEEEXtreme Nigeria Data Structures and Algorithms group and would love to share my slides. Do check it out [here](https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001)!\\n\\nUntil next time... 🥂\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch blog revisions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/blog/revision?status=pending&page=1&limit=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"revision"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "pending"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Unauthorized user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/blog/revision",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"blog",
+										"revision"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Unauthorized access\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/blog/revision?status=pending&page=1&limit=10",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"blog",
+										"revision"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "pending"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Blogs revisions retrieved successfully\",\n    \"data\": {\n        \"total\": 1,\n        \"page\": 1,\n        \"lastPage\": 1,\n        \"items\": [\n            {\n                \"blogRevisionId\": \"8c97d3b8-bfd9-4c7b-89cf-b3c71c69516a\",\n                \"userId\": \"250451ca-07e8-4a03-8cd4-80467d09af36\",\n                \"blogId\": \"29ed51ee-00bd-4d13-ac50-bbbba3deceb9\",\n                \"blogContentId\": \"56a6bc3d-ac9a-4426-95f4-14fc5a51d816\",\n                \"title\": \"Big O Notation and Asymptotic Analysis (Presentation)\",\n                \"description\": \"Understanding Big O Notation, Theta notation and Omega notation. Knowing how to analyze common algorithms and common mistakes to avoid\",\n                \"coverImage\": \"https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg\",\n                \"slug\": \"big-o-notation-and-asymptotic-analysis-presentation-d851e62c9208\",\n                \"status\": \"pending\",\n                \"revisionType\": \"CREATE\",\n                \"revisionDate\": null,\n                \"createdAt\": \"2024-08-29T21:36:53.516Z\",\n                \"deletedAt\": null,\n                \"blogContent\": {\n                    \"html\": \"<p>Good day everyone, it's been a long minute since I wrote an article on here due to some circumstances that I hope would get sorted soon enough, a tiny little bit of procrastination 😉</p>\\n<p>But then, I hosted a session for the IEEEXtreme Nigeria Data Structures and Algorithms group and would love to share my slides. Do check it out <a target=\\\"_blank\\\" href=\\\"https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001\\\">here</a>!</p>\\n<p>Until next time... 🥂</p>\",\n                    \"markdown\": \"Good day everyone, it's been a long minute since I wrote an article on here due to some circumstances that I hope would get sorted soon enough, a tiny little bit of procrastination 😉\\n\\nBut then, I hosted a session for the IEEEXtreme Nigeria Data Structures and Algorithms group and would love to share my slides. Do check it out [here](https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001)!\\n\\nUntil next time... 🥂\"\n                }\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Evaluate blog revision",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"blogRevisionId\": \"72267d9d-4e0a-44ce-8aaf-7788259a8a12\",\r\n    \"action\": \"approve\" // reject\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/blog/revision/evaluate",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"revision",
+								"evaluate"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful rejection",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"blogRevisionId\": \"8c97d3b8-bfd9-4c7b-89cf-b3c71c69516a\",\r\n    \"action\": \"reject\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/blog/revision/evaluate",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"blog",
+										"revision",
+										"evaluate"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Blog revision evaluated successfully\",\n    \"data\": {\n        \"blogRevisionId\": \"8c97d3b8-bfd9-4c7b-89cf-b3c71c69516a\",\n        \"userId\": \"250451ca-07e8-4a03-8cd4-80467d09af36\",\n        \"blogId\": \"29ed51ee-00bd-4d13-ac50-bbbba3deceb9\",\n        \"blogContentId\": \"56a6bc3d-ac9a-4426-95f4-14fc5a51d816\",\n        \"title\": \"Big O Notation and Asymptotic Analysis (Presentation)\",\n        \"description\": \"Understanding Big O Notation, Theta notation and Omega notation. Knowing how to analyze common algorithms and common mistakes to avoid\",\n        \"coverImage\": \"https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg\",\n        \"slug\": \"big-o-notation-and-asymptotic-analysis-presentation-d851e62c9208\",\n        \"status\": \"rejected\",\n        \"revisionType\": \"CREATE\",\n        \"revisionDate\": \"2024-08-29T22:03:16.632Z\",\n        \"createdAt\": \"2024-08-29T21:36:53.516Z\",\n        \"deletedAt\": null,\n        \"blogContent\": {\n            \"html\": \"<p>Good day everyone, it's been a long minute since I wrote an article on here due to some circumstances that I hope would get sorted soon enough, a tiny little bit of procrastination 😉</p>\\n<p>But then, I hosted a session for the IEEEXtreme Nigeria Data Structures and Algorithms group and would love to share my slides. Do check it out <a target=\\\"_blank\\\" href=\\\"https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001\\\">here</a>!</p>\\n<p>Until next time... 🥂</p>\",\n            \"markdown\": \"Good day everyone, it's been a long minute since I wrote an article on here due to some circumstances that I hope would get sorted soon enough, a tiny little bit of procrastination 😉\\n\\nBut then, I hosted a session for the IEEEXtreme Nigeria Data Structures and Algorithms group and would love to share my slides. Do check it out [here](https://www.slideshare.net/ChideraAnichebe/big-o-notation-and-asymptotic-analysis-by-chidera-anichebe-252675001)!\\n\\nUntil next time... 🥂\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Successful approval",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"blogRevisionId\": \"62644e84-b85b-4d06-94e5-3c2ea9744051\",\r\n    \"action\": \"approve\" // reject\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/blog/revision/evaluate",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"blog",
+										"revision",
+										"evaluate"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Blog revision evaluated successfully\",\n    \"data\": {\n        \"blogId\": \"bc12f0fe-4d2b-45a6-9172-b0492698c9e0\",\n        \"userId\": \"250451ca-07e8-4a03-8cd4-80467d09af36\",\n        \"blogContentId\": \"d9ecc897-c43e-4cfd-abb0-3839a6c5227a\",\n        \"title\": \"Big O Notation and Asymptotic Analysis (Presentation)\",\n        \"description\": \"Understanding Big O Notation, Theta notation and Omega notation. Knowing how to analyze common algorithms and common mistakes to avoid\",\n        \"slug\": \"big-o-notation-and-asymptotic-analysis-presentation-78d3c66582ba\",\n        \"coverImage\": \"https://cdn.hashnode.com/res/hashnode/image/unsplash/nQWMnlPE_No/upload/v1661319322462/qnS3vQ3_L.jpeg\",\n        \"isApproved\": true,\n        \"isPublished\": true,\n        \"createdAt\": \"2024-08-29T23:12:56.422Z\",\n        \"deletedAt\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete blog",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{userToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/blog/ef66e42e-729b-402e-bfe0-f4bb5020605e",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"ef66e42e-729b-402e-bfe0-f4bb5020605e"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Access denied",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/blog/dc4989a7-bd80-493b-a42b-63f595a7b66c",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"blog",
+										"dc4989a7-bd80-493b-a42b-63f595a7b66c"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Access denied\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Delete blog",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/blog/918058ae-3eb1-467f-b878-16a170c437d3",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"blog",
+										"918058ae-3eb1-467f-b878-16a170c437d3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Blog deleted successfully\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Successful deletion request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/v1/blog/ef66e42e-729b-402e-bfe0-f4bb5020605e",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"blog",
+										"ef66e42e-729b-402e-bfe0-f4bb5020605e"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Blog deletion pending admin approval\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Update blog",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{userToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"New title\",\r\n    \"html\": \"Bla bla\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/blog/bc12f0fe-4d2b-45a6-9172-b0492698c9e0",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"blog",
+								"bc12f0fe-4d2b-45a6-9172-b0492698c9e0"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful update request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"New title\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/blog/bc12f0fe-4d2b-45a6-9172-b0492698c9e0",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"blog",
+										"bc12f0fe-4d2b-45a6-9172-b0492698c9e0"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Blog update pending admin approval\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Successful update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"New title\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/blog/bc12f0fe-4d2b-45a6-9172-b0492698c9e0",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"blog",
+										"bc12f0fe-4d2b-45a6-9172-b0492698c9e0"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Blog updated successfully\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Organization",
+			"item": [
+				{
+					"name": "Create organization",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Analytics Intelligence\",\r\n    \"logo\": \"https://analyticsintelligence.com/static/media/logo.598c36a3e2a40a7a65b239d7858a8cda.svg\",\r\n    \"tagline\": \"Making Analyics and Artificial Intelligence Accessible to All\",\r\n    \"websiteUrl\": \"https://analyticsintelligence.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/organization",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"organization"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Unauthenticated",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Analytics Intelligence\",\r\n    \"logo\": \"https://analyticsintelligence.com/static/media/logo.598c36a3e2a40a7a65b239d7858a8cda.svg\",\r\n    \"tagline\": \"Making Analyics and Artificial Intelligence Accessible to All\",\r\n    \"websiteUrl\": \"https://analyticsintelligence.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/organization",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"organization"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"invalidToken\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Unauthorized user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Analytics Intelligence\",\r\n    \"logo\": \"https://analyticsintelligence.com/static/media/logo.598c36a3e2a40a7a65b239d7858a8cda.svg\",\r\n    \"tagline\": \"Making Analyics and Artificial Intelligence Accessible to All\",\r\n    \"websiteUrl\": \"https://analyticsintelligence.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/organization",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"organization"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Access denied, only admin can create an organization\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Analytics Intelligence\",\r\n    \"logo\": \"https://analyticsintelligence.com/static/media/logo.598c36a3e2a40a7a65b239d7858a8cda.svg\",\r\n    \"tagline\": \"Making Analyics and Artificial Intelligence Accessible to All\",\r\n    \"websiteUrl\": \"https://analyticsintelligence.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/organization",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"organization"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Organization created successfully\",\n    \"data\": {\n        \"organizationId\": \"517656a5-55f6-4e60-8976-9bdbd210b553\",\n        \"name\": \"Analytics Intelligence\",\n        \"logo\": \"https://analyticsintelligence.com/static/media/logo.598c36a3e2a40a7a65b239d7858a8cda.svg\",\n        \"tagline\": \"Making Analyics and Artificial Intelligence Accessible to All\",\n        \"websiteUrl\": \"https://analyticsintelligence.com\",\n        \"createdAt\": \"2024-08-29T13:31:49.605Z\",\n        \"deletedAt\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Add employee to organization",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"organizationId\": \"517656a5-55f6-4e60-8976-9bdbd210b553\",\r\n    \"userId\": \"f9f151d9-918b-4bf9-97df-fb7fa37e70f8\",\r\n    \"position\": \"Software Engineer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/organization/employee",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"organization",
+								"employee"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"organizationId\": \"517656a5-55f6-4e60-8976-9bdbd210b553\",\r\n    \"userId\": \"f9f151d9-918b-4bf9-97df-fb7fa37e70f8\",\r\n    \"position\": \"Software Engineer\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/organization/employee",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"organization",
+										"employee"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Employee added successfully\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Employee already in organization",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"organizationId\": \"517656a5-55f6-4e60-8976-9bdbd210b553\",\r\n    \"userId\": \"f9f151d9-918b-4bf9-97df-fb7fa37e70f8\",\r\n    \"position\": \"Software Engineer\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/v1/organization/employee",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"v1",
+										"organization",
+										"employee"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"User already employed\",\n    \"data\": null\n}"
 						}
 					]
 				}
