@@ -80,6 +80,8 @@ class QueryServices {
       return {
         total: count,
         page,
+        previousPage: page > 1 ? page - 1 : null,
+        nextPage: Math.ceil(count / limit) > page ? page + 1 : null,
         lastPage: Math.ceil(count / limit),
         items: rows,
       };
@@ -121,6 +123,8 @@ class QueryServices {
       return {
         total: count,
         page,
+        previousPage: page > 1 ? page - 1 : null,
+        nextPage: Math.ceil(count / limit) > page ? page + 1 : null,
         lastPage: Math.ceil(count / limit),
         items: rows,
       };
