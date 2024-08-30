@@ -131,6 +131,10 @@ class BlogServices {
         throw new Error('Blog content not found');
       }
 
+      if (newData.title) {
+        newData.slug = helper.slugify(newData.title);
+      }
+
       const userIsAnEmployee = await query.isUserAnEmployee(user.userId);
       if (!userIsAnEmployee && !user.isAdmin) {
         await query.updatePendingBlog(
