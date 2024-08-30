@@ -1,4 +1,8 @@
-const { User, Security } = require('../../database/models');
+const {
+  User,
+  Security,
+  EmployeeOrganization,
+} = require('../../database/models');
 
 class QueryServices {
   accessUser = async (userId) => {
@@ -25,7 +29,16 @@ class QueryServices {
 
   fetchProfile = async (userId) => {
     try {
-      const user = await User.findOne({ where: { userId } });
+      const user = await User.findOne({
+        where: { userId },
+        include: [
+          {
+            model: EmployeeOrganization,
+            as: 'employer',
+            attributes: ['organizationId', 'position'],
+          },
+        ],
+      });
       return user;
     } catch (error) {
       throw error;

@@ -11,6 +11,17 @@ class BlogServices {
     }
   };
 
+  fetchPersonalBlogs = async (req) => {
+    try {
+      const token = await helper.extractToken(req);
+      const user = await jwt.authUser(token);
+
+      return await query.fetchPersonalBlogs(user.userId, req.query);
+    } catch (error) {
+      throw error;
+    }
+  };
+
   fetchAllBlogRevisions = async (req) => {
     try {
       const token = await helper.extractToken(req);

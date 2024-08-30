@@ -31,12 +31,11 @@ class ProfileServices {
   fetchProfile = async (req) => {
     try {
       const token = await helper.extractToken(req);
-      const userId = await jwt.authUser(token);
-      const user = await query.accessUser(userId);
+      const user = await jwt.authUser(token);
       if (!user) {
         throw new Error('User not found');
       }
-      return await query.fetchProfile(userId);
+      return await query.fetchProfile(user.userId);
     } catch (error) {
       throw error;
     }

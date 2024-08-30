@@ -21,6 +21,15 @@ blogRouter.get('/', inputs.fetchBlogs(), async (req, res) => {
   }
 });
 
+blogRouter.get('/personal', inputs.fetchPersonalBlogs(), async (req, res) => {
+  try {
+    const result = await blogs.fetchPersonalBlogs(req);
+    response.success(res, 'Personal blogs retrieved successfully', result);
+  } catch (error) {
+    response.error(res, error.message);
+  }
+});
+
 blogRouter.get('/revision', inputs.fetchBlogRevisions(), async (req, res) => {
   try {
     const result = await blogs.fetchAllBlogRevisions(req);
